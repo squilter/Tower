@@ -69,9 +69,9 @@ public class GoogleMapFragment extends SupportMapFragment implements DPMap,
 	public static final String MAP_TYPE_TERRAIN = "Terrain";
 
 	// TODO: update the interval based on the user's current activity.
-	private static final long USER_LOCATION_UPDATE_INTERVAL = 5000; // ms
-	private static final long USER_LOCATION_UPDATE_FASTEST_INTERVAL = 1000; // ms
-	private static final float USER_LOCATION_UPDATE_MIN_DISPLACEMENT = 5; // m
+	private static final long USER_LOCATION_UPDATE_INTERVAL = 500; // ms
+	private static final long USER_LOCATION_UPDATE_FASTEST_INTERVAL = 100; // ms
+	private static final float USER_LOCATION_UPDATE_MIN_DISPLACEMENT = 0; // m
 
 	private final HashBiMap<MarkerInfo, Marker> mMarkers = HashBiMap.create();
 
