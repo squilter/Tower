@@ -520,7 +520,8 @@ public class EditorToolsFragment extends ApiListenerFragment implements OnClickL
         private static final MissionItemType[] DRAW_ITEMS_TYPE = {
                 MissionItemType.WAYPOINT,
                 MissionItemType.SPLINE_WAYPOINT,
-                MissionItemType.SURVEY
+                MissionItemType.SURVEY,
+                MissionItemType.SPLINE_SURVEY
         };
 
         private final static String EXTRA_SELECTED_DRAW_MISSION_ITEM_TYPE = "extra_selected_draww_mission_item_type";
@@ -564,6 +565,10 @@ public class EditorToolsFragment extends ApiListenerFragment implements OnClickL
             if (selectedType == MissionItemType.SURVEY) {
                 Toast.makeText(editorToolsFragment.getContext(), R.string.draw_the_survey_region, Toast.LENGTH_SHORT).show();
             }
+
+            if (selectedType == MissionItemType.SPLINE_SURVEY) {
+                Toast.makeText(editorToolsFragment.getContext(), R.string.draw_the_survey_region, Toast.LENGTH_SHORT).show();
+            }
         }
 
         @Override
@@ -587,6 +592,15 @@ public class EditorToolsFragment extends ApiListenerFragment implements OnClickL
                             return;
                         }
                         break;
+
+                    case SPLINE_SURVEY:
+                        if (points.size() > 2) {
+                            missionProxy.addSplineSurveyPolygon(points);
+                        } else {
+                            editorToolsFragment.setTool(EditorTools.DRAW);
+                            return;
+                        }
+                        break;
                 }
             }
             editorToolsFragment.setTool(EditorTools.NONE);
@@ -598,7 +612,7 @@ public class EditorToolsFragment extends ApiListenerFragment implements OnClickL
                 editorToolsFragment.drawPopup.dismiss();
 
             selectedType = (MissionItemType) parent.getItemAtPosition(position);
-            if (selectedType == MissionItemType.SURVEY) {
+            if (selectedType == MissionItemType.SURVEY || selectedType == MissionItemType.SPLINE_SURVEY) {
                 Toast.makeText(editorToolsFragment.getContext(), R.string.draw_the_survey_region, Toast.LENGTH_SHORT).show();
             }
 

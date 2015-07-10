@@ -22,6 +22,7 @@ import com.o3dr.services.android.lib.drone.mission.item.command.ReturnToLaunch;
 import com.o3dr.services.android.lib.drone.mission.item.command.Takeoff;
 import com.o3dr.services.android.lib.drone.mission.item.complex.StructureScanner;
 import com.o3dr.services.android.lib.drone.mission.item.complex.Survey;
+import com.o3dr.services.android.lib.drone.mission.item.complex.SplineSurvey;
 import com.o3dr.services.android.lib.drone.mission.item.complex.SurveyDetail;
 import com.o3dr.services.android.lib.drone.mission.item.spatial.BaseSpatialItem;
 import com.o3dr.services.android.lib.drone.mission.item.spatial.RegionOfInterest;
@@ -233,6 +234,17 @@ public class MissionProxy implements DPMap.PathSource {
         Survey survey = new Survey();
         survey.setPolygonPoints(points);
         addMissionItem(survey);
+    }
+
+    /**
+     * Adds a survey mission item to the set.
+     *
+     * @param points 2D points making up the survey
+     */
+    public void addSplineSurveyPolygon(List<LatLong> points) {
+        SplineSurvey splineSurvey = new SplineSurvey();
+        splineSurvey.setPolygonPoints(points);
+        addMissionItem(splineSurvey);
     }
 
     /**
